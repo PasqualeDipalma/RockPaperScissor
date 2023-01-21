@@ -4,9 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="./script.js" defer></script>
     <title>RockPaperScrissor</title>
 </head>
 <body>
-    <script src="./script.js"></script>
+    <div class="body-container">
+        <div class="banners">
+            <img class="banner" src="./images/banner.png" alt="Banner">
+            <img class="rules" src="./images/rules.jpg" alt="Rules">
+        </div>
+        <div class="score-container">
+            <div class="player-score">
+                <div class="text">Player Score</div>
+                <div class="score-box">3</div>
+            </div>
+            <div class="computer-score">
+                <div class="text">Computer Score</div>
+                <div class="score-box">2</div>
+            </div>
+        </div>
+        <div class="result-choices">
+            <div class="round-result">You win!</div>
+            <div class="buttons-container">
+                <button class="Paper">
+                    <img src="./images/paper.png" alt="Paper">
+                    <span>Paper</span>
+                </button>
+                <button class="Scissor">
+                    <img src="./images/scissor.jpg" alt="">
+                    <span>Scissor</span>
+                </button>
+                <button class="Rock">
+                    <img src="./images/rock.jpg" alt="Rock">
+                    <span>Rock</span>
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
