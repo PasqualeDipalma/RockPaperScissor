@@ -10,11 +10,6 @@ function getComputerChoice(){
     return choice[random];
 }
 
-function getPlayerChoice(){
-    let playerChoice = prompt("Type your choice:");
-    playerChoice = playerChoice[0].toUpperCase() + playerChoice.slice(1).toLowerCase();
-    return playerChoice;
-}
 
 function playRound(playerSelection, computerSelection){
 
@@ -47,40 +42,85 @@ function playRound(playerSelection, computerSelection){
     
 }
 
-function game(){
-    let playerSelection = getPlayerChoice();
-    let computerSelection = getComputerChoice();
-    let roundResult;
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        roundResult = playRound(playerSelection, computerSelection);
+//Global variables
+let roundsCount = 0;
+let playerScore = 0;
+let computerScore = 0;
 
-        if(roundResult.substring(7,10) != "Tie"){
-            if(roundResult.substring(3,8) == " Lose"){
-                computerScore++;
-            }else if(roundResult.substring(3,8) == " Win!"){
-                playerScore++;
+/*
+TO DO:
+ - Make an animation with buttons to highlight what player selected
+*/
+
+//Game starts when player click on a button
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+            let playerSelection = "";
+            let computerSelection = getComputerChoice();
+            let result = "";
+            switch(button.className){
+                case 'Paper':
+                    playerSelection = 'Paper';
+                    result = playRound(playerSelection, computerSelection);
+                    displayRoundScore(result);
+                    roundsCount++;
+                    break;
+                case 'Scissor':
+                    playerSelection = 'Scissor';
+                    result = playRound(playerSelection, computerSelection);
+                    displayRoundScore(result);
+                    roundsCount++;
+                    break;
+                case 'Rock':
+                    playerSelection = 'Rock';
+                    result = playRound(playerSelection, computerSelection);
+                    displayRoundScore(result);
+                    roundsCount++;
+                    break;
             }
-        }
+            checkNumberRounds(roundsCount);
+    });
+});
 
-        console.log(roundResult);
-        console.log(`Computer score: ${computerScore}`);
-        console.log(`Player score: ${playerScore}`);
-        console.log("");
-        if(i != 4){
-            playerSelection = getPlayerChoice();
-            computerSelection = getComputerChoice();
+//Check number of round played
+function checkNumberRounds(roundsCount){
+    if(roundsCount == 5){
+        displayWinner();
+    }
+}
+
+/* TO DO:
+    - Change all console.log into display scores in score-container
+*/
+function displayRoundScore(result){
+
+    if(result.substring(7,10) != "Tie"){
+        if(result.substring(3,8) == " Lose"){
+            computerScore++;
+        }else if(result.substring(3,8) == " Win!"){
+            playerScore++;
         }
     }
-    if(playerScore > computerScore){
-        console.log("Player Wins!");
-    }else if(playerScore < computerScore){
-        console.log("Computer Wins!");
-    }
-    if(playerScore == computerScore)
-        console.log("It's a Tie!");
+
+    console.log(result);
+    console.log(`Computer score: ${computerScore}`);
+    console.log(`Player score: ${playerScore}`);
+    console.log("");
+    
 }
 
 
-game();
+/*                              -------ADD------- 
+When winners is displayed show a pop up to ask if player want to play again and reset
+scores, couters and text in result box 
+*/
+function displayWinner() {
+    if (playerScore > computerScore) {
+        console.log("Player Wins!");
+    } else if (playerScore < computerScore) {
+        console.log("Computer Wins!");
+    }
+    if (playerScore == computerScore)
+        console.log("It's a Tie!");
+}
