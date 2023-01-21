@@ -3,3 +3,6 @@
 
 <h1>Description</h1>
 We’re going to make a simple implementation of grade-school classic “rock paper scissors”. For the moment we’re just going to play the game from the browser console, but we will revisit this project in a later lesson and add a Graphical User Interface with buttons and text.
+
+<h3>21/01/2023</h3>
+Added page structure, style and changed the javascript code to use selectors.
